@@ -4,7 +4,7 @@ const SvgDiagram = ({ scaledFoot, scaledHeight, scaledRadius }) => (
   <div className="experiments">
     <svg viewBox="0 0 500 300" height="100%" width="100%" preserveAspectRatio="xMidYMid meet">
       <rect width={scaledFoot} height={scaledHeight} className="svg-rect" />
-      <line x1="0" y1="0" x2="0" y2={scaledHeight} strokeWidth="8" stroke="blue" />
+      <line x1="0" y1="0" x2="0" y2={scaledHeight} strokeWidth="8" stroke="#0033ff" />
       <line x1="0" y1="0" x2={scaledFoot} y2="0" strokeWidth="8" stroke="#1ac62b" />
       <path
         d={`M${scaledFoot},${scaledRadius} v-${scaledRadius} A${scaledRadius},${scaledRadius} 0 0,0 0,${scaledHeight} z`}
