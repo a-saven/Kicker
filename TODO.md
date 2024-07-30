@@ -1,7 +1,3 @@
-1. Colour updates
-2. Shading depth grey rather than the jump
-3. Center layout
-
 Colour Codes:
 Orange #ff8110
 Pink #ff33cc
@@ -13,7 +9,11 @@ Slider Active #2f6468
 
 https://cutlaps.com/pages/kicker-calculator
 
-Later:
+### TODO:
 
-1. M -> cm
-2. Metric/Imperial toggle at the bottom (is it possible to change from centimeters to feet/inches?)
+1. Ajustable height and width of SVG
+2. Centered responsive layout
+3. M to cm toggle (or just cm)
+4. centimeters to feet/inches toggle at the bottom
+5. Shading depth grey rather than the jump
+6. Ui updates close to design https://cutlaps.com/pages/kicker-calculator
