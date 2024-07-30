@@ -17,4 +17,8 @@ https://cutlaps.com/pages/kicker-calculator
 4. centimeters to feet/inches toggle at the bottom (1h)
 5. Shading depth grey rather than the jump (1h)
 6. Ui updates close to design https://cutlaps.com/pages/kicker-calculator (2h)
+ - slider color change
+ - names
+ - fonts
+ - underlines
 7. Packages update (2h)
