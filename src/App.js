@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import './inputStyles.css';
 import ValueDisplay from './components/ValueDisplay';
 import RangeInput from './components/RangeInput';
 import SvgDiagram from './components/SvgDiagram';
@@ -50,8 +51,8 @@ class App extends Component {
             <SvgDiagram scaledFoot={scaledFoot} scaledHeight={scaledHeight} scaledRadius={scaledRadius} />
             <div className="displayValues">
               <ValueDisplay label="Radius" value={this.cv().radius} unit="m" className="radiusValue" />
-              <ValueDisplay label="Length" value={this.cv().foot} unit="m" className="footValue" />
-              <ValueDisplay label="Hypotenuse" value={this.cv().length} unit="m" className="lengthValue" />
+              <ValueDisplay label="Length" value={this.cv().foot} unit="m" className="lengthValue" />
+              <ValueDisplay label="Hypotenuse" value={this.cv().length} unit="m" className="hypotenuseValue" />
               <ValueDisplay label="Deepth" value={this.cv().deepth} unit="m" className="deepthValue" />
             </div>
             <RangeInput
