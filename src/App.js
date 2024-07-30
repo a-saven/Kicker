@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+import ValueDisplay from './components/ValueDisplay';
+import RangeInput from './components/RangeInput';
+import SvgDiagram from './components/SvgDiagram';
 
 class App extends Component {
   constructor(props) {
@@ -44,68 +47,31 @@ class App extends Component {
       <div className="App">
         <div className="container">
           <div className="central">
-            <div className="experiments">
-              <svg viewBox="0 0 500 300" height="100%" width="100%" preserveAspectRatio="xMidYMid meet">
-                <rect width={scaledFoot} height={scaledHeight} className="svg-rect" />
-                <line x1="0" y1="0" x2="0" y2={scaledHeight} strokeWidth="8" stroke="blue" />
-                <line x1="0" y1="0" x2={scaledFoot} y2="0" strokeWidth="8" stroke="#1ac62b" />
-                <path
-                  d={`M${scaledFoot},${scaledRadius} v-${scaledRadius} A${scaledRadius},${scaledRadius} 0 0,0 0,${scaledHeight} z`}
-                  fill="white"
-                  stroke="black"
-                  strokeWidth="3"
-                />
-                <line x1="0" y1={scaledHeight} x2={scaledFoot} y2="0" strokeWidth="2" stroke="#ff33cc" />
-                <line x1={scaledFoot} y1="0" x2={scaledFoot} y2={scaledRadius} stroke="#ff8110" strokeWidth="3" />
-                <line x1="0" y1={scaledHeight} x2={scaledFoot} y2={scaledRadius} stroke="#ff8110" strokeWidth="3" />
-                Sorry, your browser does not support inline SVG.
-              </svg>
-            </div>
+            <SvgDiagram scaledFoot={scaledFoot} scaledHeight={scaledHeight} scaledRadius={scaledRadius} />
             <div className="displayValues">
-              <div className="radiusValue">
-                Radius
-                <br /> {this.cv().radius}m
-              </div>
-              <div className="footValue">
-                Length
-                <br /> {this.cv().foot}m
-              </div>
-              <div className="lengthValue">
-                Hypotenuse
-                <br /> {this.cv().length}m
-              </div>
-              <div className="deepthValue">
-                Depth
-                <br /> {this.cv().deepth}m
-              </div>
+              <ValueDisplay label="Radius" value={this.cv().radius} unit="m" className="radiusValue" />
+              <ValueDisplay label="Length" value={this.cv().foot} unit="m" className="footValue" />
+              <ValueDisplay label="Hypotenuse" value={this.cv().length} unit="m" className="lengthValue" />
+              <ValueDisplay label="Deepth" value={this.cv().deepth} unit="m" className="deepthValue" />
             </div>
-            <div className="inputs">
-              <span className="numbers">ANGLE</span>
-              <input
-                name="angle"
-                className="numbers"
-                type="range"
-                min="25"
-                max="90"
-                step="1"
-                onChange={this.handleChange}
-                value={angle}
-              />
-              <span className="numbers">{angle}°</span>
-            </div>
-            <div className="inputs input-label">
-              <span className="numbers">HEIGHT</span>
-              <input
-                name="height"
-                type="range"
-                min="0.1"
-                max="4"
-                step="0.1"
-                onChange={this.handleChange}
-                value={height}
-              />
-              <span className="numbers">{height}m</span>
-            </div>
+            <RangeInput
+              name="angle"
+              label="ANGLE"
+              min="25"
+              max="90"
+              step="1"
+              value={angle}
+              onChange={this.handleChange}
+            />
+            <RangeInput
+              name="height"
+              label="HEIGHT"
+              min="0.1"
+              max="4"
+              step="0.1"
+              value={height}
+              onChange={this.handleChange}
+            />
           </div>
         </div>
       </div>
