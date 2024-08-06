@@ -4,6 +4,7 @@ import './inputStyles.css';
 import ValueDisplay from './components/ValueDisplay';
 import RangeInput from './components/RangeInput';
 import SvgDiagram from './components/SvgDiagram';
+import Toggle from './components/Toggle';
 
 class App extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class App extends Component {
     this.state = {
       height: 1.6,
       angle: 45,
+      unit: 'm',
     };
   }
 
@@ -19,8 +21,26 @@ class App extends Component {
     this.setState({ [name]: value });
   };
 
+  handleUnitChange = (unit) => {
+    this.setState({ unit });
+  };
+
   size() {
     return 250 / this.cv().foot + 10;
+  }
+
+  convertValue(value) {
+    switch (this.state.unit) {
+      case 'cm':
+        return (value * 100).toFixed(2); // meters to centimeters
+      case 'feet':
+        return (value * 3.28084).toFixed(2); // meters to feet
+      case 'inch':
+        return (value * 39.3701).toFixed(2); // meters to inches
+      case 'm':
+      default:
+        return value.toFixed(2) || value.toFixed(2); // meters
+    }
   }
 
   cv() {
@@ -30,9 +50,9 @@ class App extends Component {
     const angleBrad = ((180 - angle) / 2) * drc; // reversed angle in radian
 
     const radius = Math.round((height / (2 * (Math.sin(angleRad / 2) * Math.sin(angleRad / 2)))) * 100) / 100;
-    const length = (height / Math.sin(angleRad / 2)).toFixed(2);
-    const foot = (height * Math.tan(angleBrad)).toFixed(2);
-    const deepth = (radius - radius * Math.sin((90 - angle / 2) * drc)).toFixed(2);
+    const length = height / Math.sin(angleRad / 2);
+    const foot = height * Math.tan(angleBrad);
+    const deepth = radius - radius * Math.sin((90 - angle / 2) * drc);
 
     return { radius, length, foot, deepth };
   }
@@ -50,10 +70,25 @@ class App extends Component {
           <div className="central">
             <SvgDiagram scaledFoot={scaledFoot} scaledHeight={scaledHeight} scaledRadius={scaledRadius} />
             <div className="displayValues">
-              <ValueDisplay label="Radius" value={this.cv().radius} unit="m" className="radiusValue" />
-              <ValueDisplay label="Length" value={this.cv().foot} unit="m" className="lengthValue" />
-              <ValueDisplay label="Hypotenuse" value={this.cv().length} unit="m" className="hypotenuseValue" />
-              <ValueDisplay label="Deepth" value={this.cv().deepth} unit="m" className="deepthValue" />
+              <ValueDisplay label="Radius" value={this.cv().radius} unit="&deg;" className="radiusValue" />
+              <ValueDisplay
+                label="Length"
+                value={this.convertValue(this.cv().foot)}
+                unit={this.state.unit}
+                className="lengthValue"
+              />
+              <ValueDisplay
+                label="Hypotenuse"
+                value={this.convertValue(this.cv().length)}
+                unit={this.state.unit}
+                className="hypotenuseValue"
+              />
+              <ValueDisplay
+                label="Deepth"
+                value={this.convertValue(this.cv().deepth)}
+                unit={this.state.unit}
+                className="deepthValue"
+              />
             </div>
             <RangeInput
               name="angle"
@@ -63,6 +98,7 @@ class App extends Component {
               step="1"
               value={angle}
               onChange={this.handleChange}
+              å
             />
             <RangeInput
               name="height"
@@ -70,9 +106,11 @@ class App extends Component {
               min="0.1"
               max="4"
               step="0.1"
-              value={height}
+              value={this.convertValue(height)}
+              unit={this.state.unit}
               onChange={this.handleChange}
             />
+            <Toggle unit={this.state.unit} onUnitChange={this.handleUnitChange} />
           </div>
         </div>
       </div>

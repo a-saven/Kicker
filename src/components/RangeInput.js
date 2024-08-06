@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RangeInput = ({ name, label, min, max, step, value, onChange }) => (
+const RangeInput = ({ name, label, min, max, step, value, onChange, unit }) => (
   <div className="inputs">
     <span className="numbers">{label}</span>
     <input
@@ -15,7 +15,8 @@ const RangeInput = ({ name, label, min, max, step, value, onChange }) => (
     />
     <span className="numbers">
       {value}
-      {name === 'angle' ? '°' : 'm'}
+      &nbsp;
+      {name === 'angle' ? '°' : unit}
     </span>
   </div>
 );
