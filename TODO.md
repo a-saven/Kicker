@@ -21,3 +21,5 @@ https://cutlaps.com/pages/kicker-calculator
 - names
 - fonts
 - underlines
+
+-- deploy 
