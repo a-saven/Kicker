@@ -33,15 +33,14 @@ class App extends Component {
     console.log('value', value);
     switch (this.state.unit) {
       case 'cm':
-        return (value * 100).toFixed(2); // meters to centimeters
+        return (value * 100).toFixed(1); // meters to centimeters
       case 'feet':
         return (value * 3.28084).toFixed(2); // meters to feet
       case 'inch':
-        return (value * 39.3701).toFixed(2); // meters to inches
+        return (value * 39.3701).toFixed(1); // meters to inches
       case 'm':
       default:
-        console.log(value);
-        return Number(value).toFixed(2) || Number(value).toFixed(2); // meters
+        return Number(value).toFixed(2); // meters
     }
   }
 
@@ -99,6 +98,7 @@ class App extends Component {
               max="90"
               step="1"
               value={angle}
+              meterValue={angle}
               onChange={this.handleChange}
               å
             />
@@ -109,6 +109,7 @@ class App extends Component {
               max="4"
               step="0.1"
               value={this.convertValue(height)}
+              meterValue={height}
               unit={this.state.unit}
               onChange={this.handleChange}
             />

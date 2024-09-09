@@ -8,7 +8,6 @@ class Toggle extends React.Component {
 
   render() {
     const unit = this.props.unit || 'm';
-    console.log('unit', unit);
     return (
       <div
         style={{
