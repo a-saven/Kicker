@@ -30,6 +30,7 @@ class App extends Component {
   }
 
   convertValue(value) {
+    console.log('value', value);
     switch (this.state.unit) {
       case 'cm':
         return (value * 100).toFixed(2); // meters to centimeters
@@ -39,7 +40,8 @@ class App extends Component {
         return (value * 39.3701).toFixed(2); // meters to inches
       case 'm':
       default:
-        return value.toFixed(2) || value.toFixed(2); // meters
+        console.log(value);
+        return Number(value).toFixed(2) || Number(value).toFixed(2); // meters
     }
   }
 
