@@ -1,5 +1,6 @@
 {
-  "name": "kikr",
+  "name": "kicker",
+  "homepage": "https://a-saven.github.io/Kiker",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
